@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbfaf8">
+  <title>CodeWay — консультація</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main>
+    <section class="consultation" aria-labelledby="title">
+      <div class="intro">
+        <p class="eyebrow">КОНСУЛЬТАЦІЯ</p>
+        <h1 id="title">З чого<br>почати<span>?</span></h1>
+        <p class="description">Розкажи, що хочеш створювати. Допоможемо обрати курс під твої цілі та досвід.</p>
+      </div>
+      <form id="consultation-form">
+        <div class="field">
+          <label for="name">Ім’я</label>
+          <input id="name" name="name" autocomplete="name" placeholder="Твоє ім’я" required>
+        </div>
+        <div class="field">
+          <label for="email">Електронна пошта</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="phone">Телефон (за бажанням)</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+380">
+        </div>
+        <div class="field">
+          <label for="course">Курс</label>
+          <select id="course" name="course">
+            <option value="Потрібна порада">Потрібна порада</option>
+            <option>Веброзробка</option>
+            <option>UI/UX дизайн</option>
+            <option>Python</option>
+            <option>Інший напрям</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="comment">Коментар (за бажанням)</label>
+          <textarea id="comment" name="comment" placeholder="Твій досвід і цілі"></textarea>
+        </div>
+        <button class="submit" type="submit">Підготувати лист
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="hint">Відкриється поштовий застосунок, де можна надіслати заявку.</p>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <a class="brand" href="#" aria-label="CodeWay — на головну"><span class="brand-mark">‹›</span>CodeWay</a>
+    <a class="footer-link" href="mailto:hello@codeway.com">hello@codeway.com</a>
+    <a class="footer-link" href="#">Дизайн-система ↗</a>
+  </footer>
+  <script>
+    document.getElementById('consultation-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const subject = encodeURIComponent('Заявка на консультацію CodeWay');
+      const body = encodeURIComponent(
+        `Ім’я: ${data.get('name')}\nЕлектронна пошта: ${data.get('email')}\nТелефон: ${data.get('phone') || '—'}\nКурс: ${data.get('course')}\nКоментар: ${data.get('comment') || '—'}`
+      );
+      window.location.href = `mailto:hello@codeway.com?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
